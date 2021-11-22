@@ -1,42 +1,41 @@
 package com.example.pruebasandroid;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.pruebasandroid.adaptadores.ListaContactosAdapter;
+import com.example.pruebasandroid.db.DbContactos;
+import com.example.pruebasandroid.entidades.Contactos;
 import com.example.pruebasandroid.db.DbHelper;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btnCrear;
+    RecyclerView listaContactos;
+    ArrayList <Contactos> listaArrayContactos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        btnCrear=findViewById(R.id.btnCrear);
+        listaContactos = findViewById(R.id.listaContactos);
+        listaContactos.setLayoutManager(new LinearLayoutManager(this));
 
-        btnCrear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DbHelper dbHelper = new DbHelper(MainActivity.this);
-                SQLiteDatabase db = dbHelper.getWritableDatabase();
-                if(db!=null){
-                    Toast.makeText(MainActivity.this, "Base de datos creado", Toast.LENGTH_LONG).show();
-                }
-                else{
-                    Toast.makeText(MainActivity.this, "error al crear base ", Toast.LENGTH_LONG).show();
-                }
-            }
-        });
+        DbContactos dbContactos = new DbContactos(MainActivity.this);
+
+        listaArrayContactos = new ArrayList<>();
+
+        ListaContactosAdapter adapter = new ListaContactosAdapter(dbContactos.mostrarContactos());
+        listaContactos.setAdapter(adapter);
+
     }
 
     public boolean onCreateOptionsMenu(Menu menu){

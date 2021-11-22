@@ -19,7 +19,7 @@ public class DbHelper extends SQLiteOpenHelper {
     private String CREAR_TABLA_CONTACTOS = " CREATE TABLE "+ TABLA_CONTACTOS + "(" +
             "id INTEGER PRIMARY KEY AUTOINCREMENT, "+
             "nombre TEXT NOT NULL,"+
-            "telefono TEXT + NOT NULL,"+
+            "telefono TEXT NOT NULL,"+
             "correo TEXT)";
 
     private String BORRAR_TABLA_CONTACTOS = "DROP TABLE "+ TABLA_CONTACTOS;

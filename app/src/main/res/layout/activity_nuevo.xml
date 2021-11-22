@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="@string/nombre"
+        android:hint="@string/hint_nombre"
         android:inputType="textPersonName"
         android:textSize="24sp" />
 
@@ -21,7 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="@string/telefono"
+        android:hint="@string/hint_telefono"
         android:inputType="phone"
         android:textSize="24sp" />
 
@@ -30,7 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="@string/correo"
+        android:hint="@string/hint_correo"
         android:inputType="textEmailAddress"
         android:textSize="24sp" />
 

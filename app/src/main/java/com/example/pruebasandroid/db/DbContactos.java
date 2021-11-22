@@ -63,7 +63,32 @@ public class DbContactos extends DbHelper {
             }while (cursorContactos.moveToNext());
         }
 
+        cursorContactos.close();
         return  listaContactos;
     }
+
+    public Contactos verContacto(int id){
+        DbHelper dbHelper = new DbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        ArrayList<Contactos> listaContactos= new ArrayList<>();
+        Contactos contacto = null;
+        Cursor cursorContactos= null;
+
+        String consultaContactos = "select * from " + TABLA_CONTACTOS + " where id = "+ id + " limit 1";
+
+        cursorContactos= db.rawQuery(consultaContactos, null);
+
+        if(cursorContactos.moveToFirst()){
+                contacto = new Contactos();
+                contacto.setId(cursorContactos.getInt(0));
+                contacto.setNombre(cursorContactos.getString(1));
+                contacto.setTelefono(cursorContactos.getString(2));
+                contacto.setCorreo(cursorContactos.getString(3));
+        }
+        cursorContactos.close();
+        return  contacto;
+    }
+
 
 }

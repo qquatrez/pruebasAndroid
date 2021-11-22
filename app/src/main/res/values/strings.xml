@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">PruebasAndroid</string>
+    <string name="nombre">Nombre</string>
+    <string name="telefono">Telefono</string>
+    <string name="correo">Correo Electronico</string>
+    <string name="btn_guardar">Guardar Contacto</string>
+    <string name="menu_nuevo">Nuevo Contacto</string>
+</resources>

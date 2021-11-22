@@ -90,5 +90,30 @@ public class DbContactos extends DbHelper {
         return  contacto;
     }
 
+    public boolean editarContacto(int id, String nombre, String telefono, String correo){
+        boolean correcto = false;
+
+        DbHelper dbHelper = new DbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        String actualizarContacto = "update " + TABLA_CONTACTOS + " SET nombre= '"+nombre
+                +"', telefono= '"+ telefono
+                + "', correo='"+correo
+                +"' where id = " +id;
+        try{
+            db.execSQL(actualizarContacto);
+            correcto = true;
+        }
+        catch (Exception ex){
+            ex.toString();
+            correcto = false;
+        }
+        finally {
+            db.close();
+        }
+
+        return correcto;
+    }
+
 
 }
